@@ -1,22 +1,11 @@
 from selenium import webdriver
-import time
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options  # Corrected import statement
+from webdriver_manager.chrome import ChromeDriverManager
 
-def main():
-    # Initialize the WebDriver and specify the path to chromedriver
-    driver = webdriver.Chrome(executable_path='/path/to/chromedriver')
+options = Options()
+options.add_experimental_option("detach", True)
 
-    # Navigate to the URL
-    driver.get('https://kick.com/internetentourage')
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-    # Optional: Simulate some interactions
-    # For example, to click a button with the ID 'playButton':
-    # driver.find_element_by_id('playButton').click()
-
-    # Wait for a few seconds
-    time.sleep(5)
-
-    # Close the WebDriver
-    driver.quit()
-
-if __name__ == "__main__":
-    main()
+driver.get("https://www.neuralnine.com/")  # Corrected line
